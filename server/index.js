@@ -8,15 +8,17 @@ const StudentModel = require("./models/StudentLogin"); // Import your student mo
 const app = express();
 
 app.use(express.json());
-app.use(cors(
-  {
-    origin:['https//SCMS-1whq-vercel-app'],
-    methods:['POST', 'GET'],
-    Credential: true
-  }
-));
+app.use(
+  cors({
+    origin: ["https://smcs.vercel.app/"],
+    methods: ["POST", "GET"],
+    credentials: true,
+  })
+);
 
-mongoose.connect("mongodb+srv://Daniel:Bioba008@cluster0.vbhlr5f.mongodb.net/Daniel?retryWrites=true&w=majority");
+app.use(express.json());
+
+mongoose.connect("mongodb://localhost:27017");
 
 /// Endpoint for user login
 app.post("/login", (req, res) => {
@@ -46,7 +48,6 @@ app.post("/login", (req, res) => {
   }
 });
 
-
 // Endpoint for user registration
 app.post("/register", (req, res) => {
   console.log("Received registration data:", req.body);
@@ -61,8 +62,6 @@ app.post("/register", (req, res) => {
     });
 });
 
-
-
 // Set up Multer storage configuration for uploading result files
 const storageResultFile = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -76,7 +75,6 @@ const storageResultFile = multer.diskStorage({
 // Create a Multer instance for uploading result files
 const uploadResultFile = multer({ storage: storageResultFile });
 
-
 // Endpoint to upload result files
 app.post("/uploadResult", uploadResultFile.single("resultFile"), (req, res) => {
   const { email } = req.body;
@@ -88,7 +86,7 @@ app.post("/uploadResult", uploadResultFile.single("resultFile"), (req, res) => {
   }
 
   const resultFilePath = path.join("uploads", resultFile.filename);
-  
+
   // Update the user's result file information in the database
   StudentModel.findOneAndUpdate(
     { email: email },
@@ -107,10 +105,6 @@ app.post("/uploadResult", uploadResultFile.single("resultFile"), (req, res) => {
       res.status(500).json(err);
     });
 });
-
-
-
-
 
 // Endpoint to fetch user information
 app.post("/fetchUserInfo", (req, res) => {
@@ -141,7 +135,9 @@ app.get("/getAllStudents", (req, res) => {
     })
     .catch((err) => {
       console.error("Error fetching students:", err);
-      res.status(500).json({ error: "An error occurred while fetching students" });
+      res
+        .status(500)
+        .json({ error: "An error occurred while fetching students" });
     });
 });
 
