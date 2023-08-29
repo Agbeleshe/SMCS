@@ -1,0 +1,71 @@
+const adviceArray = [
+  { id: 1, advice: "Stay curious and keep learning." },
+  { id: 2, advice: "Believe in yourself—you're capable of amazing things." },
+  { id: 3, advice: "Embrace challenges as opportunities to grow." },
+  { id: 4, advice: "Set goals that inspire and motivate you." },
+  { id: 5, advice: "Don't be afraid to ask questions." },
+  { id: 6, advice: "Celebrate your achievements, no matter how small." },
+  { id: 7, advice: "Take breaks to recharge and maintain focus." },
+  { id: 8, advice: "Your attitude determines your success—keep it positive." },
+  { id: 9, advice: "Develop good study habits and time management skills." },
+  { id: 10, advice: "Seek feedback and use it to improve." },
+  { id: 11, advice: "Stay organized to reduce stress and improve efficiency." },
+  { id: 12, advice: "Find inspiration from your role models." },
+  {
+    id: 13,
+    advice: "Don't be discouraged by setbacks—they're part of the journey.",
+  },
+  { id: 14, advice: "Practice makes progress, so keep practicing." },
+  { id: 15, advice: "Take care of your well-being—both physical and mental." },
+  { id: 16, advice: "Explore new interests and broaden your horizons." },
+  { id: 17, advice: "Help others—it's fulfilling and builds character." },
+  { id: 18, advice: "Stay open-minded and consider different perspectives." },
+  { id: 19, advice: "Your effort is never wasted—it leads to growth." },
+  { id: 20, advice: "Build a support network of friends and mentors." },
+  { id: 21, advice: "Believe in the power of perseverance." },
+  { id: 22, advice: "Take calculated risks to discover your potential." },
+  { id: 23, advice: "Face challenges with a positive and resilient mindset." },
+  { id: 24, advice: "Stay humble and continue to learn from others." },
+  { id: 25, advice: "Prioritize self-care and balance in your life." },
+  { id: 26, advice: "Visualize your success and work towards it." },
+  { id: 27, advice: "Be patient—achievements take time." },
+  {
+    id: 28,
+    advice: "Learn from your failures and turn them into stepping stones.",
+  },
+  { id: 29, advice: "Express gratitude for the opportunities you have." },
+  { id: 30, advice: "Focus on progress, not perfection." },
+  { id: 31, advice: "Collaborate with others to achieve greater results." },
+  { id: 32, advice: "Challenge yourself to step out of your comfort zone." },
+  { id: 33, advice: "Find joy in the process of learning and growing." },
+  { id: 34, advice: "Stay determined in the face of difficulties." },
+  { id: 35, advice: "Practice resilience—it's a key to success." },
+  { id: 36, advice: "Be kind to yourself and practice self-compassion." },
+  { id: 37, advice: "Celebrate your uniqueness—it sets you apart." },
+  { id: 38, advice: "Think creatively and find innovative solutions." },
+  { id: 39, advice: "Stay organized to manage your tasks effectively." },
+  { id: 40, advice: "Learn from constructive criticism to improve." },
+  {
+    id: 41,
+    advice: "Face your fears—they often hold your greatest opportunities.",
+  },
+  { id: 42, advice: "Stay motivated by reminding yourself of your goals." },
+  { id: 43, advice: "Surround yourself with positive influences." },
+  {
+    id: 44,
+    advice: "Believe that setbacks are temporary and can be overcome.",
+  },
+  { id: 45, advice: "Continue to challenge and push yourself forward." },
+  { id: 46, advice: "Find inspiration from the world around you." },
+  { id: 47, advice: "Strive for excellence in everything you do." },
+  { id: 48, advice: "Express your thoughts and ideas confidently." },
+  { id: 49, advice: "Your hard work will lead to success." },
+  { id: 50, advice: "Remember, progress is more important than perfection." },
+];
+
+function getRandomAdvice() {
+  const randomIndex = Math.floor(Math.random() * adviceArray.length);
+  return adviceArray[randomIndex].advice;
+}
+
+export default getRandomAdvice;
