@@ -8,9 +8,15 @@ const StudentModel = require("./models/StudentLogin"); // Import your student mo
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors(
+  {
+    origin:['https//SCMS-1whq-vercel-app'],
+    methods:['POST', 'GET'],
+    Credential: true
+  }
+));
 
-mongoose.connect("mongodb://127.0.0.1:27017/StudentSystem");
+mongoose.connect("mongodb+srv://Daniel:Bioba008@cluster0.vbhlr5f.mongodb.net/Daniel?retryWrites=true&w=majority");
 
 /// Endpoint for user login
 app.post("/login", (req, res) => {
