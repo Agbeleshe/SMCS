@@ -16,6 +16,8 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
+
+axios.defaults.withCredentials = true
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     axios
