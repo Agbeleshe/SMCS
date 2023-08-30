@@ -14,7 +14,7 @@ function App() {
     <BrowserRouter>
       <Nav />
       <Routes>
-        <Route path="/login" element={<Index />} />
+        <Route path="/" element={<Index />} />
         <Route path="/StudentDashboard" element={<StudentInfo />} />
 
         {/* Admin dashboard */}
