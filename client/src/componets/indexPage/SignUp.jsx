@@ -29,11 +29,10 @@ const SignUp = ({ flip, setFlip }) => {
   const handleBack = () => {
     setCurrentStep((prevStep) => prevStep - 1);
   };
-  
+
   axios.defaults.withCredentials = true;
   const handleSubmit = (e) => {
-    axios
-      .post("https://smcsserver.vercel.app/register", {
+    axios.post("https://smcsserver.vercel.app/register", {
         email,
         password,
         firstName,
