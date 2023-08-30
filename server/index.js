@@ -8,7 +8,7 @@ const StudentModel = require("./models/StudentLogin"); // Import your student mo
 const app = express();
 app.use(
   cors({
-    origin: ["https://smcsserver.vercel.app"],
+    origin: ["https://smcs-m8w5.vercel.app/"],
     methods: ["POST", "GET"],
     credentials: true,
   })
