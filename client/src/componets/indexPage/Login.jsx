@@ -21,7 +21,7 @@ axios.defaults.withCredentials = true;
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("https://smcsclient.vercel.app/", { email, password })
+      .post("https://smcsserver.vercel.app/", { email, password })
       .then((result) => {
         setLoginResult(result.data);
         if (result.data === "Success") {
