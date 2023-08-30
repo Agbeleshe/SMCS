@@ -29,10 +29,11 @@ const SignUp = ({ flip, setFlip }) => {
   const handleBack = () => {
     setCurrentStep((prevStep) => prevStep - 1);
   };
-
+  
+  axios.defaults.withCredentials = true;
   const handleSubmit = (e) => {
     axios
-      .post("http://localhost:3001/register", {
+      .post("https://smcsserver.vercel.app/register", {
         email,
         password,
         firstName,
@@ -49,23 +50,23 @@ const SignUp = ({ flip, setFlip }) => {
       })
       .then((result) => {
         console.log(result);
-    //     // Clear input fields after successful submission
-    //     // setEmail("");
-    //     // setPassword("");
-    //     // setFirstName("");
-    //     // setLastName("");
-    //     // setAge("");
-    //     // setSponsor("");
-    //     // setAmbition("");
-    //     // setPrefectship("");
-    //     // setStudentClass("");
-    //     // setGender("");
-    //     // setHobbies("");
-    //     // setStateOfOrigin("");
-    //     // setFunFact("");
+        //     // Clear input fields after successful submission
+        //     // setEmail("");
+        //     // setPassword("");
+        //     // setFirstName("");
+        //     // setLastName("");
+        //     // setAge("");
+        //     // setSponsor("");
+        //     // setAmbition("");
+        //     // setPrefectship("");
+        //     // setStudentClass("");
+        //     // setGender("");
+        //     // setHobbies("");
+        //     // setStateOfOrigin("");
+        //     // setFunFact("");
       })
       .catch((err) => console.log(err));
-     
+
     if (
       email.length === 0 ||
       password.length === 0 ||
@@ -106,7 +107,6 @@ const SignUp = ({ flip, setFlip }) => {
     setIsSubmitted(true);
     // console.log("isSubmitted: " + isSubmitted);
 
-
     // updateSignupInfo({
     //   email,
     //   password,
@@ -121,9 +121,8 @@ const SignUp = ({ flip, setFlip }) => {
     //   hobbies,
     //   stateOfOrigin,
     //   funFact,
-     
-    // });
 
+    // });
   };
 
   const FirstForm = (

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 const ResultUploader = ({ userInfo }) => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -7,14 +8,14 @@ const ResultUploader = ({ userInfo }) => {
     setSelectedFile(e.target.files[0]);
   };
 
+  axios.defaults.withCredentials = true;
   const handleUpload = (e) => {
     e.preventDefault();
-
     const formData = new FormData();
     formData.append("resultFile", selectedFile);
     formData.append("email", userInfo.email);
     console.log("this is the form data: " + formData);
-    fetch("http://localhost:3001/uploadResult", {
+    fetch("https://smcsserver.vercel.app/uploadResult", {
       method: "POST",
       body: formData,
     })
