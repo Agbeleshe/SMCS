@@ -22,7 +22,7 @@ mongoose.connect(
   "mongodb+srv://danielagbeleshe:68e1lEXa8m5kWqUa@studentsrecord.diu0mgv.mongodb.net/test?retryWrites=true&w=majority"
 );
 app.get("/", (req, res) => {
-  res.json("Hello server");
+  res.json("Hello server...");
 });
 /// Endpoint for user login
 app.post("/", (req, res) => {
@@ -53,7 +53,7 @@ app.post("/", (req, res) => {
 });
 
 // Endpoint for user registration
-app.post("/", (req, res) => {
+app.post("/register", (req, res) => {
   console.log("Received registration data:", req.body);
   StudentModel.create(req.body)
     .then((student) => {

@@ -31,7 +31,8 @@ const SignUp = ({ flip, setFlip }) => {
 
   axios.defaults.withCredentials = true;
   const handleSubmit = (e) => {
-    axios.post("https://smcsserver.vercel.app/", {
+    e.preventDefault();
+    axios.post("https://smcsserver.vercel.app/register", {
         email,
         password,
         firstName,
