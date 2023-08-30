@@ -21,7 +21,7 @@ app.use(express.json());
 mongoose.connect(
   "mongodb+srv://danielagbeleshe:68e1lEXa8m5kWqUa@studentsrecord.diu0mgv.mongodb.net/test?retryWrites=true&w=majority"
 );
-app.get("/", (re, res) => {
+app.get("/", (req, res) => {
   res.json("Hello server");
 });
 /// Endpoint for user login
@@ -54,37 +54,7 @@ app.post("/", (req, res) => {
 
 // Endpoint for user registration
 app.post("/register", (req, res) => {
-  const {
-    email,
-    password,
-    firstName,
-    lastName,
-    age,
-    sponsor,
-    ambition,
-    prefectship,
-    studentClass,
-    gender,
-    hobbies,
-    stateOfOrigin,
-    funFact,
-  } = req.body;
-
-  console.log("Received data from frontend:");
-  console.log("Email:", email);
-  console.log("Password:", password);
-  console.log("First Name:", firstName);
-  console.log("Last Name:", lastName);
-  console.log("Age:", age);
-  console.log("Sponsor:", sponsor);
-  console.log("Ambition:", ambition);
-  console.log("Prefectship:", prefectship);
-  console.log("Student Class:", studentClass);
-  console.log("Gender:", gender);
-  console.log("Hobbies:", hobbies);
-  console.log("State of Origin:", stateOfOrigin);
-  console.log("Fun Fact:", funFact);
-
+  console.log("Received registration data:", req.body);
   StudentModel.create(req.body)
     .then((student) => {
       console.log("New student created:", student);
@@ -95,6 +65,7 @@ app.post("/register", (req, res) => {
       res.status(500).json(err);
     });
 });
+
 // Set up Multer storage configuration for uploading result files
 const storageResultFile = multer.diskStorage({
   destination: (req, file, cb) => {
