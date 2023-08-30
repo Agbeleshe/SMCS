@@ -6,7 +6,7 @@ import Nav from "./componets/aStruc/Nav";
 import Footer from "./componets/aStruc/Footer";
 import Index from "./componets/indexPage/Index";
 import StudentInfo from "./componets/studentDashboard/StudentInfo";
-import TeacherIndex from "./componets/teachersDashboard/teacherIndex";
+import TeacherIndex from "./componets/teachersDashboard/TeacherIndex";
 import NotificationPage from "./componets/teachersDashboard/NotificationPage";
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
         <Route path="/StudentDashboard" element={<StudentInfo />} />
 
         {/* Admin dashboard */}
-        <Route path='/adminDashboard' element={<TeacherIndex/>}/>
+        <Route path="/adminDashboard" element={<TeacherIndex />} />
       </Routes>
       <Footer />
     </BrowserRouter>
