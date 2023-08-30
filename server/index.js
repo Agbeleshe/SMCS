@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["https://smcs-m8w5.vercel.app/"],
+    origin: ["https://smcs-m8w5.vercel.app"],
     methods: ["POST", "GET"],
     credentials: true,
   })
