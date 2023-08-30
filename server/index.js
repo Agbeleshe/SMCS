@@ -8,11 +8,14 @@ const StudentModel = require("./models/StudentLogin"); // Import your student mo
 const app = express();
 app.use(
   cors({
-    origin: ["https://smcsclient.vercel.app/"],
+    origin: ["https://smcsclient.vercel.app"],
     methods: ["POST", "GET"],
     credentials: true,
+    allowedHeaders: ["Content-Type", "Authorization"], // Add any additional headers
+    optionsSuccessStatus: 200, // Some legacy browsers (IE11, various SmartTVs) choke on 204
   })
 );
+
 
 app.use(express.json());
 
