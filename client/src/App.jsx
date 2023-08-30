@@ -7,7 +7,7 @@ import Footer from "./componets/aStruc/Footer";
 import Index from "./componets/indexPage/Index";
 import StudentInfo from "./componets/studentDashboard/StudentInfo";
 import TeacherIndex from "./componets/teachersDashboard/TeacherIndex";
-import NotificationPage from "./componets/teachersDashboard/NotificationPage";
+
 
 function App() {
   return (

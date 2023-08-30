@@ -18,7 +18,7 @@ app.use(
 
 app.use(express.json());
 
-mongoose.connect("mongodb://localhost:27017");
+mongoose.connect("mongodb+srv://danielagbeleshe:68e1lEXa8m5kWqUa@studentsrecord.diu0mgv.mongodb.net/?retryWrites=true&w=majority");
 
 /// Endpoint for user login
 app.post("/login", (req, res) => {
