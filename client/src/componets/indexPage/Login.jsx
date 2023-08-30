@@ -19,7 +19,7 @@ const Login = () => {
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3001/login", { email, password })
+      .post("http://localhost:3001/", { email, password })
       .then((result) => {
         setLoginResult(result.data);
         if (result.data === "Success") {
