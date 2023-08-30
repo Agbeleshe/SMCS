@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { BsPersonCheckFill } from "react-icons/bs";
 import axios from "axios";
-// import { useSignupContext } from "../../context/SignupProvider"; // Import the context hook
+
 
 const SignUp = ({ flip, setFlip }) => {
-  // const { updateSignupInfo } = useSignupContext();
   const [currentStep, setCurrentStep] = useState(1);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
