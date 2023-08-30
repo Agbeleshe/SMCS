@@ -12,10 +12,11 @@ const TeacherIndex = () => {
   const closeModal = () => {
     setSelectedStudent(null); // Clear the selected student when closing modal
   };
-
+  
+  axios.defaults.withCredentials = true;
   useEffect(() => {
     axios
-      .get("http://localhost:3001/getAllStudents")
+      .get("https://smcsserver.vercel.app/getAllStudents")
       .then((response) => {
         setStudents(response.data);
       })
