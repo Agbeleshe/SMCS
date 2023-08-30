@@ -6,11 +6,9 @@ const path = require("path");
 const StudentModel = require("./models/StudentLogin"); // Import your student model here
 
 const app = express();
-
-app.use(express.json());
 app.use(
   cors({
-    origin: ["https://smcs-m8w5.vercel.app/"],
+    origin: ["https://smcsserver.vercel.app"],
     methods: ["POST", "GET"],
     credentials: true,
   })
@@ -18,10 +16,12 @@ app.use(
 
 app.use(express.json());
 
-mongoose.connect("mongodb+srv://danielagbeleshe:68e1lEXa8m5kWqUa@studentsrecord.diu0mgv.mongodb.net/?retryWrites=true&w=majority");
-
+mongoose.connect("mongodb+srv://danielagbeleshe:68e1lEXa8m5kWqUa@studentsrecord.diu0mgv.mongodb.net/test?retryWrites=true&w=majority");
+app.get("/", (re, res) =>{
+  res.json("Hello server")
+})
 /// Endpoint for user login
-app.post("/login", (req, res) => {
+app.post("/", (req, res) => {
   const { email, password } = req.body;
 
   if (email === "admin@example.com" && password === "Admin") {
