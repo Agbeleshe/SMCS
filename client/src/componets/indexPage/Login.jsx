@@ -19,7 +19,7 @@ const Login = () => {
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3001/", { email, password })
+      .post("https://smcs-m8w5.vercel.app/", { email, password })
       .then((result) => {
         setLoginResult(result.data);
         if (result.data === "Success") {
