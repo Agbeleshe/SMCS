@@ -53,7 +53,7 @@ app.post("/", (req, res) => {
 });
 
 // Endpoint for user registration
-app.post("/register", (req, res) => {
+app.post("/", (req, res) => {
   console.log("Received registration data:", req.body);
   StudentModel.create(req.body)
     .then((student) => {
