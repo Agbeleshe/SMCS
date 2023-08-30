@@ -7,12 +7,14 @@ import About from "./About";
 const StudentInfo = () => {
   const [userInfo, setUserInfo] = useState(null);
 
+
+  axios.defaults.withCredentials = true;
   useEffect(() => {
     // Get user's email from localStorage
     const userEmail = localStorage.getItem("userEmail");
 
     // Fetch user information using the stored email
-    axios.post("http://localhost:3001/fetchUserInfo", { email: userEmail })
+    axios.post("https://smcsserver.vercel.app/fetchUserInfo", { email: userEmail })
       .then((result) => {
         setUserInfo(result.data);
       })
