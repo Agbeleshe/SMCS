@@ -6,3 +6,5 @@ The main objectives of the Student Counseling Management System are as follows:
 2. To automate the appointment scheduling process, ensuring that the students can easily book counseling sessions at their convenience.
 3. To provide counselors with a comprehensive overview of each student’s counseling history and progress, enabling more personalized support and guidance.
 4. To show students grade developments so as to determine if a student is not in the usual performance level.
+
+...
