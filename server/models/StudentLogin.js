@@ -23,6 +23,6 @@ const StudentSchema = new mongoose.Schema({
 
 
 
-const StudentModel = mongoose.model('registeredStudentsInfo', StudentSchema);
+const StudentModel = mongoose.model('registeredStudents', StudentSchema);
 
 module.exports = StudentModel;

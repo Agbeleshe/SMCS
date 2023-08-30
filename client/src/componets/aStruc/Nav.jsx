@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const Nav = () => {
   return (
     <div className="shadow-xl fixed z-20 w-full bg-base-100">

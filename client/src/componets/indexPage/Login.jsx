@@ -30,6 +30,7 @@ axios.defaults.withCredentials = true;
         } else if (result.data === "Admin") {
           // Admin login successful
           localStorage.setItem("userEmail", email);
+          console.log("email: " + email)
           navigate("/adminDashboard");
         }
       })

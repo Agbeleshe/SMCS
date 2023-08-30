@@ -14,6 +14,7 @@ const HeadProfile = ({ userInfo }) => {
   }, []);
 
   if (!userInfo) {
+    console.log('student info: ' + userInfo)
     return <div>Loading...</div>;
   }
 

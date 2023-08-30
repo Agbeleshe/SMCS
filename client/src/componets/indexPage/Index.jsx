@@ -33,7 +33,7 @@ const Index = () => {
             <div className="card-body">
               {flip ? <SignUp flip={flip} setFlip={setFlip} /> : <Login />}
               {/* or */}
-              <div className="divider">OR</div>
+              <div className="divider font-extrabold text-gray-600">OR</div>
               <div className="w-full text-center">
                 <a onClick={handleSign} href="">
                   {flip ? (
@@ -45,7 +45,7 @@ const Index = () => {
                     </p>
                   ) : (
                     <p>
-                      <span className="text-black">Don't have an account?</span>
+                      <span className="text-gray-500">Don't have an account?</span>
 
                       <em className="text-red-500 underline mx-1">Sign up</em>
                     </p>

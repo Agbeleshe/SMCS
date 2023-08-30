@@ -1,5 +1,4 @@
 const About = ({ userInfo }) => {
-  //  const { signupInfo } = useSignupContext();
 
   if (!userInfo) {
     return <div>Loading...</div>;
