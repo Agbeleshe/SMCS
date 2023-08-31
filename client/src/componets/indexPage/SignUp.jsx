@@ -241,14 +241,13 @@ const SignUp = ({ flip, setFlip }) => {
         onChange={(e) => setStudentClass(e.target.value)}
       >
         <option value="" disabled>
-          Select Class
+          What level are you in
         </option>
-        <option value="jss1">JSS1</option>
-        <option value="jss2">JSS2</option>
-        <option value="jss3">JSS3</option>
-        <option value="ss1">SS1</option>
-        <option value="ss2">SS2</option>
-        <option value="ss3">SS3</option>
+        <option value="jss1">100 lEVEL</option>
+        <option value="jss2">200 LEVEL</option>
+        <option value="jss3">300 LEVEL</option>
+        <option value="ss1">400 LEVEL</option>
+        <option value="ss2">500 LEVEL AND ABOVE</option>
       </select>
 
       <div className="flex mt-4 justify-between">
