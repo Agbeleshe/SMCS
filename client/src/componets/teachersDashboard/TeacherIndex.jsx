@@ -67,40 +67,44 @@ const TeacherIndex = () => {
               </thead>
               <tbody>
                 {/* row 1 */}
-                {students.map((student) => (
-                  <tr
-                    key={student._id}
-                    onClick={() => handleStudentView(student)}
-                    className="bg-gray-200 hover:bg-gray-300 cursor-pointer"
-                  >
-                    <td>
-                      <div className="flex items-center space-x-3">
-                        <div className="avatar">
-                          <div className="mask mask-squircle w-12 h-12">
-                            {selectedStudent.resultFile &&
-                              selectedStudent.resultFile.filename && (
-                                <a
-                                  className="btn text-xs hover:text-black text-white bg-primary w-full h-full"
-                                  href={`http://localhost:3001/downloadResult/${selectedStudent.resultFile.filename}`}
-                                  download
-                                >
-                                  Result
-                                </a>
-                              )}
+                {students.length === 0 ? (
+                  <p>Loading...</p>
+                ) : (
+                  students.map((student) => (
+                    <tr
+                      key={student._id}
+                      onClick={() => handleStudentView(student)}
+                      className="bg-gray-200 hover:bg-gray-300 cursor-pointer"
+                    >
+                      <td>
+                        <div className="flex items-center space-x-3">
+                          <div className="avatar">
+                            <div className="mask mask-squircle w-12 h-12">
+                              {student.resultFile &&
+                                student.resultFile.filename && (
+                                  <a
+                                    className="btn text-xs hover:text-black text-white bg-primary w-full h-full"
+                                    href={`http://localhost:3001/downloadResult/${student.resultFile.filename}`}
+                                    download
+                                  >
+                                    Result
+                                  </a>
+                                )}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </td>
+                      </td>
 
-                    <td>{student.firstName}</td>
-                    <td>{student.gender}</td>
-                    <td>
-                      <button className="btn btn-ghost btn-xs">
-                        {student.studentClass}
-                      </button>
-                    </td>
-                  </tr>
-                ))}
+                      <td>{student.firstName}</td>
+                      <td>{student.gender}</td>
+                      <td>
+                        <button className="btn btn-ghost btn-xs">
+                          {student.studentClass}
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                )}
               </tbody>
 
               {/* foot */}
@@ -125,7 +129,7 @@ const TeacherIndex = () => {
                     <p>Sponsor: {selectedStudent.sponsor}</p>
                     <p>Ambition: {selectedStudent.ambition}</p>
                     <p>Prefectship: {selectedStudent.prefectship}</p>
-                    <p>Student Class: {selectedStudent.studentClass}</p>
+                    <p>Student Level: {selectedStudent.studentClass}</p>
                     <p>Gender: {selectedStudent.gender}</p>
                     <p>Hobbies: {selectedStudent.hobbies}</p>
                     <p>State of Origin: {selectedStudent.stateOfOrigin}</p>
