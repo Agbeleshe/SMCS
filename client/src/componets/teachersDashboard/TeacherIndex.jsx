@@ -12,7 +12,7 @@ const TeacherIndex = () => {
   const closeModal = () => {
     setSelectedStudent(null); // Clear the selected student when closing modal
   };
-  
+
   axios.defaults.withCredentials = true;
   useEffect(() => {
     axios
@@ -77,11 +77,11 @@ const TeacherIndex = () => {
                       <div className="flex items-center space-x-3">
                         <div className="avatar">
                           <div className="mask mask-squircle w-12 h-12">
-                            {student.resultFile &&
-                              student.resultFile.filename && (
+                            {selectedStudent.resultFile &&
+                              selectedStudent.resultFile.filename && (
                                 <a
                                   className="btn text-xs hover:text-black text-white bg-primary w-full h-full"
-                                  href={`http://localhost:3001/downloadResult/${student.resultFile.filename}`}
+                                  href={`http://localhost:3001/downloadResult/${selectedStudent.resultFile.filename}`}
                                   download
                                 >
                                   Result
