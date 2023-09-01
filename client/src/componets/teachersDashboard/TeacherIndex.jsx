@@ -70,6 +70,7 @@ const TeacherIndex = () => {
                 {students.length === 0 ? (
                   <p>Loading...</p>
                 ) : (
+                  
                   students.map((student) => (
                     <tr
                       key={student._id}
@@ -134,7 +135,7 @@ const TeacherIndex = () => {
                     <p>Hobbies: {selectedStudent.hobbies}</p>
                     <p>State of Origin: {selectedStudent.stateOfOrigin}</p>
                     <p>Fun Fact: {selectedStudent.funFact}</p>
-                    <p>Result: {selectedStudent.resultFile.filename}</p>
+                    <p>Result: {selectedStudent.resultFile?.filename}</p>
                   </div>
                 </div>
               </div>
