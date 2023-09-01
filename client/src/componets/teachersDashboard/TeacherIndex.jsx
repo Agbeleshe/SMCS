@@ -70,7 +70,6 @@ const TeacherIndex = () => {
                 {students.length === 0 ? (
                   <p>Loading...</p>
                 ) : (
-                  
                   students.map((student) => (
                     <tr
                       key={student._id}
@@ -121,7 +120,7 @@ const TeacherIndex = () => {
                     X
                   </button>
                   {/* Display student information */}
-                  <div className="-mt-5">
+                  <div className="-mt-5 gap-3">
                     <h2 className="text-lg font-semibold">
                       {selectedStudent.firstName} {selectedStudent.lastName}
                     </h2>
@@ -129,13 +128,18 @@ const TeacherIndex = () => {
                     <p>Age: {selectedStudent.age}</p>
                     <p>Sponsor: {selectedStudent.sponsor}</p>
                     <p>Ambition: {selectedStudent.ambition}</p>
-                    <p>Prefectship: {selectedStudent.prefectship}</p>
+                    <p>Leadership Position: {selectedStudent.prefectship}</p>
                     <p>Student Level: {selectedStudent.studentClass}</p>
                     <p>Gender: {selectedStudent.gender}</p>
                     <p>Hobbies: {selectedStudent.hobbies}</p>
                     <p>State of Origin: {selectedStudent.stateOfOrigin}</p>
                     <p>Fun Fact: {selectedStudent.funFact}</p>
-                    <p>Result: {selectedStudent.resultFile?.filename}</p>
+                    <p>
+                      Result:{" "}
+                      {selectedStudent.resultFile
+                        ? selectedStudent.resultFile.filename
+                        : "No file uploaded"}
+                    </p>
                   </div>
                 </div>
               </div>

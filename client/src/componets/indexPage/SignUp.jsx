@@ -221,7 +221,7 @@ const SignUp = ({ flip, setFlip }) => {
         onChange={(e) => setAmbition(e.target.value)}
       />
       <label className="label">
-        <span className="label-text">Prefectship</span>
+        <span className="label-text">Leadership Position</span>
       </label>
       <input
         required
