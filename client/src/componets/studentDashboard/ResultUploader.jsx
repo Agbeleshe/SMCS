@@ -4,6 +4,9 @@ import axios from "axios";
 const ResultUploader = ({ userInfo }) => {
   const [selectedFile, setSelectedFile] = useState(null);
 
+  const handleFileChange = (e) => {
+    setSelectedFile(e.target.files[0]);
+  };
   const handleUpload = (e) => {
     e.preventDefault();
     if (!selectedFile) {
@@ -37,7 +40,6 @@ const ResultUploader = ({ userInfo }) => {
         // Handle the error, such as displaying an error message to the user
       });
   };
-  
 
   return (
     <div className="mt-4">
