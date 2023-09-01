@@ -80,7 +80,7 @@ const storageResultFile = multer.diskStorage({
 const uploadResultFile = multer({ storage: storageResultFile });
 
 // Endpoint to upload result files
-app.post("/uploadResult", uploadResultFile.single("resultFile"), (req, res) => {
+app.post("/uploadResult", uploadResultFile.single("resultFile"), async (req, res) => {
   const { email } = req.body;
   const resultFile = req.file;
 
@@ -88,6 +88,27 @@ app.post("/uploadResult", uploadResultFile.single("resultFile"), (req, res) => {
     res.status(400).json("No file uploaded");
     return;
   }
+
+  const resultFilePath = path.join("uploads", resultFile.filename);
+
+  try {
+    // Update the user's result file information in the database
+    const user = await StudentModel.findOneAndUpdate(
+      { email: email },
+      { resultFile: { filename: resultFile.originalname, path: resultFilePath } },
+      { new: true }
+    );
+
+    if (user) {
+      res.status(200).json(user);
+    } else {
+      res.status(404).json("User not found");
+    }
+  } catch (err) {
+    console.error("Error while uploading result file:", err);
+    res.status(500).json(err);
+  }
+});
 
   const resultFilePath = path.join("uploads", resultFile.filename);
 
@@ -108,7 +129,6 @@ app.post("/uploadResult", uploadResultFile.single("resultFile"), (req, res) => {
       console.error("Error while uploading result file:", err);
       res.status(500).json(err);
     });
-});
 
 // Endpoint to fetch user information
 app.post("/fetchUserInfo", (req, res) => {
