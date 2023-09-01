@@ -4,46 +4,40 @@ import axios from "axios";
 const ResultUploader = ({ userInfo }) => {
   const [selectedFile, setSelectedFile] = useState(null);
 
-  const handleFileChange = (e) => {
-    setSelectedFile(e.target.files[0]);
-  };
-
-  axios.defaults.withCredentials = true;
-
-  axios.defaults.withCredentials = true;
   const handleUpload = (e) => {
-  e.preventDefault();
-  if (!selectedFile) {
-    alert("Please select a file to upload");
-    return;
-  }
-  const formData = new FormData();
-  formData.append("resultFile", selectedFile);
-  formData.append("email", userInfo.email);
-  console.log("this is the form data: ", formData);
-  fetch("https://smcsserver.vercel.app/uploadResult", {
-    method: "POST",
-    body: formData,
-  })
-    .then((response) => {
-      if (response.ok) {
-        return response.json(); // If response is successful, parse the JSON data
-      } else {
-        throw new Error("Error uploading result file"); // Throw an error for non-200 responses
-      }
+    e.preventDefault();
+    if (!selectedFile) {
+      alert("Please select a file to upload");
+      return;
+    }
+    const formData = new FormData();
+    formData.append("resultFile", selectedFile);
+    formData.append("email", userInfo.email);
+    console.log("this is the form data: ", formData);
+    console.log("this is the selected file: ", selectedFile); // Add this line
+    fetch("https://smcsserver.vercel.app/uploadResult", {
+      method: "POST",
+      body: formData,
     })
-    .then((data) => {
-      console.log("Result file uploaded:", data);
-      alert("Success");
-      // Update the UI or perform any necessary actions with the response data
-    })
-    .catch((error) => {
-      alert("Error uploading result file");
-      console.error("Error uploading result file:", error);
-      // Handle the error, such as displaying an error message to the user
-    });
-};
-
+      .then((response) => {
+        if (response.ok) {
+          return response.json(); // If response is successful, parse the JSON data
+        } else {
+          throw new Error("Error uploading result file"); // Throw an error for non-200 responses
+        }
+      })
+      .then((data) => {
+        console.log("Result file uploaded:", data);
+        alert("Success");
+        // Update the UI or perform any necessary actions with the response data
+      })
+      .catch((error) => {
+        alert("Error uploading result file");
+        console.error("Error uploading result file:", error);
+        // Handle the error, such as displaying an error message to the user
+      });
+  };
+  
 
   return (
     <div className="mt-4">
