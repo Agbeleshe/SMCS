@@ -10,7 +10,7 @@ const ResultUploader = ({ userInfo }) => {
 
   axios.defaults.withCredentials = true;
 
-
+  axios.defaults.withCredentials = true;
   const handleUpload = (e) => {
   e.preventDefault();
   if (!selectedFile) {
