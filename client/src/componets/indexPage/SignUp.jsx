@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { BsPersonCheckFill } from "react-icons/bs";
 import axios from "axios";
 
-
 const SignUp = ({ flip, setFlip }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [email, setEmail] = useState("");
@@ -32,7 +31,8 @@ const SignUp = ({ flip, setFlip }) => {
   axios.defaults.withCredentials = true;
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post("https://smcsserver.vercel.app/register", {
+    axios
+      .post("https://smcsserver.vercel.app/register", {
         email,
         password,
         firstName,
@@ -232,7 +232,7 @@ const SignUp = ({ flip, setFlip }) => {
         onChange={(e) => setPrefectship(e.target.value)}
       />
       <label className="label">
-        <span className="label-text">Class</span>
+        <span className="label-text">What level are you in</span>
       </label>
       <select
         required
@@ -241,13 +241,13 @@ const SignUp = ({ flip, setFlip }) => {
         onChange={(e) => setStudentClass(e.target.value)}
       >
         <option value="" disabled>
-          What level are you in
+          select level
         </option>
-        <option value="jss1">100 lEVEL</option>
-        <option value="jss2">200 LEVEL</option>
-        <option value="jss3">300 LEVEL</option>
-        <option value="ss1">400 LEVEL</option>
-        <option value="ss2">500 LEVEL AND ABOVE</option>
+        <option value="100 lEVEL">100 lEVEL</option>
+        <option value="200 LEVE">200 LEVEL</option>
+        <option value="300 LEVEL">300 LEVEL</option>
+        <option value="400 LEVEL">400 LEVEL</option>
+        <option value="500 LEVEL AND ABOVE">500 LEVEL AND ABOVE</option>
       </select>
 
       <div className="flex mt-4 justify-between">

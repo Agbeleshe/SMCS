@@ -44,7 +44,7 @@ const HeadProfile = ({ userInfo }) => {
             {userInfo.prefectship}
           </h3>
           <h4>
-            <span className="font-bold">Class:</span> {userInfo.studentClass}
+            <span className="font-bold">Level:</span> {userInfo.studentClass}
           </h4>
         </div>
       </div>
