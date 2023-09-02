@@ -1,4 +1,5 @@
 const express = require("express");
+const winston = require("winston");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const multer = require("multer");
@@ -6,13 +7,15 @@ const path = require("path");
 const StudentModel = require("./models/StudentLogin"); // Import your student model here
 
 const app = express();
+
+
 app.use(
   cors({
-    origin: ["https://smcsclient.vercel.app"],
+    origin: ["https://smcsclient.vercel.app", "http://localhost:5173"], // Add localhost as an allowed origin
     methods: ["POST", "GET"],
     credentials: true,
-    allowedHeaders: ["Content-Type", "Authorization"], // Add any additional headers
-    optionsSuccessStatus: 200, // Some legacy browsers (IE11, various SmartTVs) choke on 204
+    allowedHeaders: ["Content-Type", "Authorization"],
+    optionsSuccessStatus: 200,
   })
 );
 
@@ -23,6 +26,17 @@ app.use(function(req, res, next) {
   next();
 });
 
+const logger = winston.createLogger({
+  level: "info",
+  format: winston.format.combine(
+    winston.format.timestamp(),
+    winston.format.json()
+  ),
+  transports: [
+    new winston.transports.File({ filename: "error.log", level: "error" }),
+    new winston.transports.File({ filename: "combined.log" }),
+  ],
+});
 
 app.use(express.json());
 
@@ -93,6 +107,7 @@ app.post("/uploadResult", uploadResultFile.single("resultFile"), async (req, res
   const resultFile = req.file;
 
   if (!resultFile) {
+    logger.error("No file uploaded"); // Log the error
     res.status(400).json("No file uploaded");
     return;
   }
@@ -110,13 +125,16 @@ app.post("/uploadResult", uploadResultFile.single("resultFile"), async (req, res
     if (user) {
       res.status(200).json(user);
     } else {
+      logger.error("User not found"); // Log the error
       res.status(404).json("User not found");
     }
   } catch (err) {
+    logger.error("Error uploading result file:", err); // Log the error
     console.error("Error while uploading result file:", err);
     res.status(500).json(err);
   }
 });
+
 
 // Endpoint to fetch user information
 app.post("/fetchUserInfo", (req, res) => {
