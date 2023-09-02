@@ -5,11 +5,15 @@ import axios from "axios";
 
 const ResultUploader = ({ studentId }) => {
   const [selectedFile, setSelectedFile] = useState(null);
-
+ 
+ 
+ 
+  axios.defaults.withCredentials = true;
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
   };
 
+  axios.defaults.withCredentials = true;
   const handleUpload = () => {
     if (!selectedFile) {
       alert("no file selected");
@@ -23,6 +27,8 @@ const ResultUploader = ({ studentId }) => {
     const formData = new FormData();
     formData.append("file", selectedFile);
 
+
+    axios.defaults.withCredentials = true;
     // Make an API request to upload the result file for the specific student
     axios
       .post(`/uploadResult/${studentId}`, formData)
