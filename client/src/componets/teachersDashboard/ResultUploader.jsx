@@ -12,12 +12,13 @@ const ResultUploader = ({ studentId }) => {
 
   const handleUpload = () => {
     if (!selectedFile) {
-      alert('no file selected');
-  
-    console.log("Uploading for studentId:", studentId);
+      alert("no file selected");
+
       // Handle error: No file selected
       return;
     }
+
+    console.log("Uploading for studentId:", studentId); // Log the studentId
 
     const formData = new FormData();
     formData.append("file", selectedFile);
