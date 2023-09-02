@@ -12,7 +12,9 @@ const ResultUploader = ({ studentId }) => {
 
   const handleUpload = () => {
     if (!selectedFile) {
-        alert('no file selected')
+      alert('no file selected');
+  
+    console.log("Uploading for studentId:", studentId);
       // Handle error: No file selected
       return;
     }
@@ -35,20 +37,20 @@ const ResultUploader = ({ studentId }) => {
 
   return (
     <div className="mt-4">
-    <h2 className="text-xl font-semibold mb-2">Upload School Results</h2>
-    <input
-      type="file"
-      accept=".pdf,.doc,.docx"
-      onChange={handleFileChange}
-      className="file-input file-input-bordered w-full max-w-xs"
-    />
-    <button
-      className="w-full bg-blue-500 text-white px-3 py-1 rounded mt-2"
-      onClick={handleUpload}
-    >
-      Upload Result
-    </button>
-  </div>
+      <h2 className="text-xl font-semibold mb-2">Upload School Results</h2>
+      <input
+        type="file"
+        accept=".pdf,.doc,.docx"
+        onChange={handleFileChange}
+        className="file-input file-input-bordered w-full max-w-xs"
+      />
+      <button
+        className="w-full bg-blue-500 text-white px-3 py-1 rounded mt-2"
+        onClick={handleUpload}
+      >
+        Upload Result
+      </button>
+    </div>
   );
 };
 
