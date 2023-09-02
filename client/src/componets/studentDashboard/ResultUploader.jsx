@@ -18,7 +18,7 @@ const ResultUploader = ({ userInfo }) => {
     formData.append("email", userInfo.email);
     console.log("this is the form data: ", formData);
     console.log("this is the selected file: ", selectedFile); // Add this line
-    axios.fetch("https://smcsserver.vercel.app/uploadResult", {
+    axios.post("https://smcsserver.vercel.app/uploadResult", {
       method: "POST",
       body: formData,
     })
