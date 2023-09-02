@@ -8,10 +8,14 @@ const StudentModel = require("./models/StudentLogin"); // Import your student mo
 
 const app = express();
 
+//Create a new route for result uploads
+const resultUploadRoute = express.Router();
+
+
 
 app.use(
   cors({
-    origin: ["https://smcsclient.vercel.app", "http://localhost:5173"], // Add localhost as an allowed origin
+    origin: ["https://smcsclient.vercel.app"], // Add localhost as an allowed origin
     methods: ["POST", "GET"],
     credentials: true,
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -91,49 +95,57 @@ app.post("/register", (req, res) => {
 // Set up Multer storage configuration for uploading result files
 const storageResultFile = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads/");
+    cb(null, "uploads/"); // Store uploaded files in the 'uploads' directory
   },
   filename: (req, file, cb) => {
-    cb(null, file.originalname); // Use the original filename
+    // Generate a unique filename for the uploaded file
+    const uniqueFileName = Date.now() + "-" + file.originalname;
+    cb(null, uniqueFileName);
   },
 });
-
 // Create a Multer instance for uploading result files
 const uploadResultFile = multer({ storage: storageResultFile });
 
-// Endpoint to upload result files
-app.post("/uploadResult", uploadResultFile.single("resultFile"), async (req, res) => {
-  const { email } = req.body;
-  const resultFile = req.file;
+
+
+
+
+//Endpoit to Update the route to handle result uploads
+resultUploadRoute.post("/:studentId/uploadResult", uploadResultFile.single("resultFile"), async (req, res) => {
+  const studentId = req.params.studentId; // Step 5: Extract studentId from URL parameters
+  const resultFile = req.file; 
 
   if (!resultFile) {
-    logger.error("No file uploaded"); // Log the error
-    res.status(400).json("No file uploaded");
-    return;
+    // Step 7: Handle error if no file is uploaded
+    return res.status(400).json({ error: "No file uploaded" });
   }
 
   const resultFilePath = path.join("uploads", resultFile.filename);
 
   try {
-    // Update the user's result file information in the database
-    const user = await StudentModel.findOneAndUpdate(
-      { email: email },
-      { resultFile: { filename: resultFile.originalname, path: resultFilePath } },
-      { new: true }
+    // Step 8: Update the student's record with the result file information
+    const updatedStudent = await StudentModel.findOneAndUpdate(
+      { _id: studentId }, // Step 9: Find the student by ID
+      { resultFile: { filename: resultFile.originalname, path: resultFilePath } }, // Step 10: Update the student's record
+      { new: true } // Step 11: Get the updated student record
     );
 
-    if (user) {
-      res.status(200).json(user);
+    if (updatedStudent) {
+      res.status(200).json(updatedStudent); // Step 12: Send success response
     } else {
-      logger.error("User not found"); // Log the error
-      res.status(404).json("User not found");
+      logger.error("Student not found"); // Step 13: Handle error if student is not found
+      res.status(404).json("Student not found");
     }
   } catch (err) {
-    logger.error("Error uploading result file:", err); // Log the error
+    logger.error("Error uploading result file:", err); // Step 14: Handle error if any occurs
     console.error("Error while uploading result file:", err);
     res.status(500).json(err);
   }
 });
+
+app.use("/students", resultUploadRoute);
+
+
 
 
 // Endpoint to fetch user information

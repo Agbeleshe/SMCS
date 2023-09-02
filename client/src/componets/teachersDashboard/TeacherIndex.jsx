@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import ResultUploader from "./ResultUploader";
 
 const TeacherIndex = () => {
   const [students, setStudents] = useState([]);
@@ -134,12 +135,9 @@ const TeacherIndex = () => {
                     <p>Hobbies: {selectedStudent.hobbies}</p>
                     <p>State of Origin: {selectedStudent.stateOfOrigin}</p>
                     <p>Fun Fact: {selectedStudent.funFact}</p>
-                    <p>
-                      Result:{" "}
-                      {selectedStudent.resultFile
-                        ? selectedStudent.resultFile.filename
-                        : "No file uploaded"}
-                    </p>
+                    <div className="mt2">
+                      <ResultUploader/>
+                    </div>
                   </div>
                 </div>
               </div>

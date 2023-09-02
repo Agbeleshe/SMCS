@@ -1,9 +1,20 @@
 import React, { useState, useEffect } from "react";
 import getRandomAdvice from "./AdviceGenerator";
-import ResultUploader from "./ResultUploader";
+
 
 const HeadProfile = ({ userInfo }) => {
   const [advice, setAdvice] = useState(getRandomAdvice());
+  const [resultFile, setResultFile] = useState(null);
+
+  useEffect(() => {
+    if (userInfo && userInfo.resultFile) {
+      setResultFile(userInfo.resultFile);
+    }
+  }, [userInfo]);
+
+  if (!userInfo) {
+    return <div>Loading...</div>;
+  }
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -29,11 +40,26 @@ const HeadProfile = ({ userInfo }) => {
             </em>
           </h1>
         </div>
-        <div className="w-full justify-center items-center flex cursor-pointer">
-          <div className="w-[60%] mx-auto mb-5 text-center justify-center">
-            <ResultUploader userInfo={userInfo} />
+       <div>
+
+       {resultFile ? (
+          <div className="w-full text-center mt-5">
+            <h2 className="text-xl font-semibold mb-2">Result:</h2>
+            <a
+              href={`http://localhost:3001/downloadResult/${resultFile.filename}`}
+              download
+              className="text-blue-500 hover:underline"
+            >
+              Download Result
+            </a>
           </div>
-        </div>
+        ) : (
+          <div className="w-full text-center mt-5">
+            <p>No result available for this student.</p>
+          </div>
+        )}
+
+       </div>
         <div className="align-middle justify-center md:text-2xl h-auto w-full flex flex-col text-center md:text-start">
           <h1>
             <span className="font-bold">Full name:</span> {userInfo.firstName},{" "}
