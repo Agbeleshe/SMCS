@@ -17,20 +17,12 @@ const ResultUploader = ({ userInfo }) => {
     formData.append("resultFile", selectedFile);
     formData.append("email", userInfo.email);
     console.log("this is the form data: ", formData);
-    console.log("this is the selected file: ", selectedFile); // Add this line
-    axios.post("https://smcsserver.vercel.app/uploadResult", {
-      method: "POST",
-      body: formData,
-    })
+    console.log("this is the selected file: ", selectedFile);
+    axios
+      .post("https://smcsserver.vercel.app/uploadResult", formData)
       .then((response) => {
-        if (response.ok) {
-          return response.json(); // If response is successful, parse the JSON data
-        } else {
-          throw new Error("Error uploading result file"); // Throw an error for non-200 responses
-        }
-      })
-      .then((data) => {
-        console.log("Result file uploaded:", data);
+        // Handle the response here
+        console.log("Result file uploaded:", response.data);
         alert("Success");
         // Update the UI or perform any necessary actions with the response data
       })
