@@ -55,7 +55,7 @@ const HeadProfile = ({ userInfo }) => {
           </div>
         ) : (
           <div className="w-full text-center mt-5">
-            <p>No result available for this student.</p>
+            <p >No result available yet.</p>
           </div>
         )}
 

@@ -60,7 +60,6 @@ const TeacherIndex = () => {
               {/* head */}
               <thead className=" sticky top-0 bg-black text-white">
                 <tr>
-                  <th>Result</th>
                   <th> Name</th>
                   <th>Sex</th>
                   <th>Class</th>
@@ -77,25 +76,6 @@ const TeacherIndex = () => {
                       onClick={() => handleStudentView(student)}
                       className="bg-gray-200 hover:bg-gray-300 cursor-pointer"
                     >
-                      <td>
-                        <div className="flex items-center space-x-3">
-                          <div className="avatar">
-                            <div className="mask mask-squircle w-12 h-12">
-                              {student.resultFile &&
-                                student.resultFile.filename && (
-                                  <a
-                                    className="btn text-xs hover:text-black text-white bg-primary w-full h-full"
-                                    href={`http://localhost:3001/downloadResult/${student.resultFile.filename}`}
-                                    download
-                                  >
-                                    Result
-                                  </a>
-                                )}
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-
                       <td>{student.firstName}</td>
                       <td>{student.gender}</td>
                       <td>
@@ -136,7 +116,8 @@ const TeacherIndex = () => {
                     <p>State of Origin: {selectedStudent.stateOfOrigin}</p>
                     <p>Fun Fact: {selectedStudent.funFact}</p>
                     <div className="mt2">
-                      <ResultUploader/>
+                    <ResultUploader studentId={selectedStudent._id} />
+
                     </div>
                   </div>
                 </div>
