@@ -26,7 +26,7 @@ const ResultUploader = ({ studentId }) => {
     formData.append("file", selectedFile);
 
     // Log request details
-    console.log("Request URL:", `/uploadResult/${studentId}`);
+    console.log("Request URL:", `https://smcsserver.vercel.app/uploadResult/${studentId}`);
     console.log("Request Method:", "POST");
     console.log("Request Headers:", {
       "Content-Type": "multipart/form-data", // Make sure this matches your server's expected content type
