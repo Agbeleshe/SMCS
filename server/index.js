@@ -112,36 +112,41 @@ const uploadResultFile = multer({ storage: storageResultFile });
 
 //Endpoit to Update the route to handle result uploads
 resultUploadRoute.post("/:studentId/uploadResult", uploadResultFile.single("resultFile"), async (req, res) => {
-  const studentId = req.params.studentId; // Step 5: Extract studentId from URL parameters
-  const resultFile = req.file; 
+  const studentId = req.params.studentId;
+  console.log("Received request for studentId:", studentId); // Log studentId
 
+  const resultFile = req.file;
   if (!resultFile) {
-    // Step 7: Handle error if no file is uploaded
+    console.log("No file uploaded"); // Log if no file is uploaded
     return res.status(400).json({ error: "No file uploaded" });
   }
 
   const resultFilePath = path.join("uploads", resultFile.filename);
+  console.log("Result file path:", resultFilePath); // Log the result file path
 
   try {
-    // Step 8: Update the student's record with the result file information
+    // Update student's record with the result file information
     const updatedStudent = await StudentModel.findOneAndUpdate(
-      { _id: studentId }, // Step 9: Find the student by ID
-      { resultFile: { filename: resultFile.originalname, path: resultFilePath } }, // Step 10: Update the student's record
-      { new: true } // Step 11: Get the updated student record
+      { _id: studentId },
+      { resultFile: { filename: resultFile.originalname, path: resultFilePath } },
+      { new: true }
     );
 
     if (updatedStudent) {
-      res.status(200).json(updatedStudent); // Step 12: Send success response
+      console.log("Student record updated:", updatedStudent); // Log the updated student record
+      res.status(200).json(updatedStudent);
     } else {
-      logger.error("Student not found"); // Step 13: Handle error if student is not found
+      console.log("Student not found"); // Log if the student is not found
+      logger.error("Student not found");
       res.status(404).json("Student not found");
     }
   } catch (err) {
-    logger.error("Error uploading result file:", err); // Step 14: Handle error if any occurs
-    console.error("Error while uploading result file:", err);
+    console.error("Error uploading result file:", err); // Log any error that occurs
+    logger.error("Error uploading result file:", err);
     res.status(500).json(err);
   }
 });
+
 
 app.use("/students", resultUploadRoute);
 
