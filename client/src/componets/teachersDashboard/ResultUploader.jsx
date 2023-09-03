@@ -5,9 +5,7 @@ import axios from "axios";
 
 const ResultUploader = ({ studentId }) => {
   const [selectedFile, setSelectedFile] = useState(null);
- 
- 
- 
+
   axios.defaults.withCredentials = true;
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -27,21 +25,35 @@ const ResultUploader = ({ studentId }) => {
     const formData = new FormData();
     formData.append("file", selectedFile);
 
+    // Log request details
+    console.log("Request URL:", `/uploadResult/${studentId}`);
+    console.log("Request Method:", "POST");
+    console.log("Request Headers:", {
+      "Content-Type": "multipart/form-data", // Make sure this matches your server's expected content type
+      // Add any other headers here if needed
+    });
 
     axios.defaults.withCredentials = true;
     // Make an API request to upload the result file for the specific student
     axios
-      .post(`/uploadResult/${studentId}`, formData)
-      .then((response) => {
-        // Handle success, e.g., show a success message
-        alert("Result uploaded successfully");
-      })
-      .catch((error) => {
-        // Handle error, e.g., show an error message
-        console.error("Error uploading result:", error);
-      });
-  };
+    .post(`/uploadResult/${studentId}`, formData)
+    .then((response) => {
+      // Handle success, e.g., show a success message
+      alert("Result uploaded successfully");
+    })
+    .catch((error) => {
+      // Log error details
+      console.error("Error uploading result:", error.message);
+      console.error("Error code:", error.code);
+      console.error("Response status:", error.response.status);
+      console.error("Response status text:", error.response.statusText);
+      console.error("Response headers:", error.response.headers);
+      console.error("Response data:", error.response.data);
 
+      // Handle error, e.g., show an error message
+      alert("Error uploading result. See console for details.");
+    });
+};
   return (
     <div className="mt-4">
       <h2 className="text-xl font-semibold mb-2">Upload School Results</h2>

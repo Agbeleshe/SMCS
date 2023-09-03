@@ -5,6 +5,8 @@ const cors = require("cors");
 const multer = require("multer");
 const path = require("path");
 const StudentModel = require("./models/StudentLogin"); // Import your student model here
+const bodyParser = require("body-parser"); // Import body-parser
+
 
 const app = express();
 
@@ -29,6 +31,19 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Content-Type");
   next();
 });
+
+app.use(bodyParser.json()); // Use body-parser for JSON parsing
+
+// Custom logging endpoint using body-parser
+app.post("/logError", (req, res) => {
+  const error = req.body.error; // Assuming you send the error message as { error: "Your error message here" }
+  console.error("Server-side error:", error);
+
+  // You can now send this error message to an external service of your choice
+
+  res.status(200).send("Error message received");
+});
+
 
 const logger = winston.createLogger({
   level: "info",
