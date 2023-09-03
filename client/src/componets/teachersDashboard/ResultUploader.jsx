@@ -36,7 +36,7 @@ const ResultUploader = ({ studentId }) => {
     axios.defaults.withCredentials = true;
     // Make an API request to upload the result file for the specific student
     axios
-    .post(`/uploadResult/${studentId}`, formData)
+    .post(`https://smcsserver.vercel.app/uploadResult/${studentId}`, formData)
     .then((response) => {
       // Handle success, e.g., show a success message
       alert("Result uploaded successfully");
