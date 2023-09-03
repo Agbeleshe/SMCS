@@ -54,7 +54,7 @@ const HeadProfile = ({ userInfo }) => {
             </a>
           </div>
         ) : (
-          <div className="w-full text-center mt-5">
+          <div className="w-full text-center mt-5  mb-5 text-blue-400 bg-blue-200 p-2 ">
             <p >No result available yet.</p>
           </div>
         )}
