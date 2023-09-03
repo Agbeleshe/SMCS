@@ -26,7 +26,7 @@ const ResultUploader = ({ studentId }) => {
     formData.append("file", selectedFile);
 
     // Log request details
-    console.log("Request URL:", `https://smcsserver.vercel.app/uploadResult/${studentId}`);
+    console.log("Request URL:", `/uploadResult/${studentId}`);
     console.log("Request Method:", "POST");
     console.log("Request Headers:", {
       "Content-Type": "multipart/form-data", // Make sure this matches your server's expected content type
@@ -36,7 +36,7 @@ const ResultUploader = ({ studentId }) => {
     axios.defaults.withCredentials = true;
     // Make an API request to upload the result file for the specific student
     axios
-    .post(`https://smcsserver.vercel.app/uploadResult/${studentId}`, formData)
+    .post(`/uploadResult/${studentId}`, formData)
     .then((response) => {
       // Handle success, e.g., show a success message
       alert("Result uploaded successfully");
@@ -56,7 +56,7 @@ const ResultUploader = ({ studentId }) => {
 };
   return (
     <div className="mt-4">
-      <h2 className="text-xl font-semibold mb-2">Upload School Results</h2>
+      <h2 className="text-xl font-semibold mb-2 w-full text-center underline">Upload School Results</h2>
       <input
         type="file"
         accept=".pdf,.doc,.docx"
